@@ -1,0 +1,9 @@
+<resources>
+    <color name="background">#F5F7F6</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="primary_text">#192C28</color>
+    <color name="secondary_text">#596B65</color>
+    <color name="accent">#206B58</color>
+    <color name="on_accent">#FFFFFF</color>
+    <color name="launcher_background">#206B58</color>
+</resources>

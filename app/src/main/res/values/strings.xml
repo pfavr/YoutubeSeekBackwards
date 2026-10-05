@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Headset Rewind</string>
+    <string name="notification_label">Headset Rewind media control</string>
+    <string name="voice_command_label">Headset Rewind (long press)</string>
+    <string name="intro">Hold your headset button.\nJump back. Keep listening.</string>
+    <string name="rewind_seconds">Rewind by</string>
+    <string name="seconds_unit">seconds</string>
+    <string name="duration_value">%1$d</string>
+    <string name="save">Save duration</string>
+    <string name="settings_saved">Duration saved</string>
+    <string name="invalid_settings">Enter a whole number from 1 to 120.</string>
+    <string name="access_ready">Media control is ready</string>
+    <string name="access_needed">Allow media control to get started</string>
+    <string name="grant_access">Grant Notification access</string>
+    <string name="manage_access">Manage Notification access</string>
+    <string name="permission_disclosure">Android calls this Notification access. It grants media control and access to notification contents; this app uses only media control. No microphone, Accessibility, or network access.</string>
+    <string name="long_press_explanation">While playing, hold your headset button. Choose Headset Rewind (long press), then Always if offered.\n\nThis replaces the headset voice-command action, not your default digital assistant.</string>
+    <string name="seek_sent">Rewind sent to %1$s. The player decides whether to honor it.</string>
+    <string name="no_session">No seekable player is active. Start playback and check Notification access.</string>
+    <string name="notification_access_required">Grant Notification access to control the active player.</string>
+    <string name="session_gone">The original player is no longer active; no other player was controlled.</string>
+    <string name="seek_unavailable">The player no longer exposes a known position and seek support.</string>
+    <string name="media_access_error">Media access failed. Check Notification access and try again.</string>
+    <string name="settings_unavailable">This device does not provide the Notification access settings screen.</string>
+    <string name="call_in_progress">Rewind is suspended during calls or communication audio.</string>
+    <string name="voice_command_unavailable">The rewind handler received an unsupported action.</string>
+    <string name="voice_command_setup_error">Could not enable the rewind handler. Check system app settings and try again.</string>
+</resources>
