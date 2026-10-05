@@ -4,6 +4,18 @@ One function: hold your headset's voice-command button to rewind the active
 media session. Default **30 seconds**, adjustable from **1 to 120 seconds**.
 Native Android/Java, light and dark themes, and no runtime dependencies.
 
+## Download
+
+Download the signed `headset-rewind-2.0.apk` from this repository's **Releases**
+page once a release has been published. No Google Play account or developer fee
+is required. Android may ask you to allow installation from your browser.
+
+The public release uses a dedicated signing key. If the earlier debug APK is
+installed, uninstall it before installing the release APK; Android cannot update
+an app signed with a different key. Uninstalling resets its settings, Notification
+access, and chosen voice-command handler. Later release updates can install over
+this release when signed with the same key.
+
 <p align="center">
   <img src="docs/screenshot.png" alt="Headset Rewind on a Samsung S25 Ultra, showing a 30-second duration in dark mode" width="320">
 </p>
@@ -91,6 +103,41 @@ Release APK: `app/build/outputs/apk/release/app-release-unsigned.apk`.
 Release builds are minified/resource-shrunk; keep signing secrets outside
 the source tree. Target SDK 34 is a sideloadable baseline; review current
 store requirements before publishing.
+
+### Sign a release
+
+`zipalign` and `apksigner` are included in Android SDK build tools 35.0.0.
+Add that directory to your `PATH`, build the release, and sign it with your
+private release key:
+
+```sh
+./gradlew :app:assembleRelease
+zipalign -f 4 app/build/outputs/apk/release/app-release-unsigned.apk \
+  app/build/outputs/apk/release/app-release-aligned.apk
+apksigner sign --ks /path/to/release.p12 --v4-signing-enabled false \
+  --out app/build/outputs/apk/release/headset-rewind-2.0.apk \
+  app/build/outputs/apk/release/app-release-aligned.apk
+apksigner verify --verbose app/build/outputs/apk/release/headset-rewind-2.0.apk
+```
+
+The signer prompts for the keystore password. Never commit or upload the private
+key or its password. Keep a secure backup; losing the key prevents compatible
+updates to installed releases. Public release assets should contain only the
+signed APK and, optionally, its SHA-256 checksum.
+
+### Publish on GitHub
+
+After uploading the source to a public repository:
+
+1. Open **Releases** and choose **Draft a new release**.
+2. Create tag **v2.0** on the source commit used for this APK.
+3. Set the title to **Headset Rewind 2.0**.
+4. Attach `headset-rewind-2.0.apk` and `headset-rewind-2.0.apk.sha256`.
+5. Explain the Notification access requirement and debug-to-release reinstall
+   caveat in the release notes, then choose **Publish release**.
+
+The APK will appear under **Assets** as a public download. Do not upload the
+unsigned APK or put binaries in the source tree.
 
 Unit tests cover seek arithmetic, the 30-second amount, playback speed,
 paused playback, unknown timestamps/duration, and start/end clamping.

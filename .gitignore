@@ -5,6 +5,8 @@ local.properties
 *.iml
 *.jks
 *.keystore
+*.p12
+*.pfx
 *.apk
 *.aab
 *.apks
