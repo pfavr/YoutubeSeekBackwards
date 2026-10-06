@@ -1,0 +1,17 @@
+Hold your headset's voice-command button to rewind the active media session. The default rewind is 30 seconds, adjustable from 1 to 120 seconds.
+
+Works with YouTube and other players that expose a seekable Android media session. Requires Android 9 or later and a headset whose long press launches Android's voice-command chooser. Single, double, and triple clicks are not remapped.
+
+Setup:
+1. Open Headset Rewind and grant Notification access.
+2. Choose a rewind duration and save it.
+3. Start a seekable video or other media.
+4. Hold the headset button, select Headset Rewind (long press), and choose Always if offered.
+
+On Android 13 or later, sideloaded apps may need Allow restricted settings enabled in system App info before Notification access can be granted. If another app already handles voice commands, clear that app's defaults first.
+
+Notification access is required to enumerate and control active media sessions. Although Android also grants access to notification contents, Headset Rewind does not inspect or store notifications. It has no network permission, microphone access, ads, analytics, or runtime dependencies. Accessibility access is not required.
+
+The app prefers a playing seekable session, then a paused one. Rewinding does not toggle playback or skip tracks. Calls and communication audio suspend seeking. Lock-screen delivery depends on your headset and Android; the app does not bypass the keyguard.
+
+Some headsets launch an assistant action instead of a voice command and are not supported. Ads, live streams, and player or background-play restrictions can prevent seeking. Sending a seek command does not guarantee that the player honors it.

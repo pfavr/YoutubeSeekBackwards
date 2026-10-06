@@ -1,0 +1,2 @@
+Added store descriptions, a screenshot, and release metadata for F-Droid inclusion.
+No changes to rewind behavior or permissions.

@@ -6,9 +6,10 @@ Native Android/Java, light and dark themes, and no runtime dependencies.
 
 ## Download
 
-Download the signed `headset-rewind-2.0.apk` from this repository's **Releases**
-page once a release has been published. No Google Play account or developer fee
-is required. Android may ask you to allow installation from your browser.
+Download the signed `headset-rewind-v2.0.apk` from this repository's
+[Releases page](https://github.com/pfavr/YoutubeSeekBackwards/releases).
+No Google Play account or developer fee is required. Android may ask you to
+allow installation from your browser.
 
 The public release uses a dedicated signing key. If the earlier debug APK is
 installed, uninstall it before installing the release APK; Android cannot update
@@ -115,9 +116,9 @@ private release key:
 zipalign -f 4 app/build/outputs/apk/release/app-release-unsigned.apk \
   app/build/outputs/apk/release/app-release-aligned.apk
 apksigner sign --ks /path/to/release.p12 --v4-signing-enabled false \
-  --out app/build/outputs/apk/release/headset-rewind-2.0.apk \
+  --out app/build/outputs/apk/release/headset-rewind-v2.0.1.apk \
   app/build/outputs/apk/release/app-release-aligned.apk
-apksigner verify --verbose app/build/outputs/apk/release/headset-rewind-2.0.apk
+apksigner verify --verbose app/build/outputs/apk/release/headset-rewind-v2.0.1.apk
 ```
 
 The signer prompts for the keystore password. Never commit or upload the private
@@ -130,9 +131,9 @@ signed APK and, optionally, its SHA-256 checksum.
 After uploading the source to a public repository:
 
 1. Open **Releases** and choose **Draft a new release**.
-2. Create tag **v2.0** on the source commit used for this APK.
-3. Set the title to **Headset Rewind 2.0**.
-4. Attach `headset-rewind-2.0.apk` and `headset-rewind-2.0.apk.sha256`.
+2. Create tag **v2.0.1** on the source commit used for this APK.
+3. Set the title to **Headset Rewind 2.0.1**.
+4. Attach `headset-rewind-v2.0.1.apk` and `headset-rewind-v2.0.1.apk.sha256`.
 5. Explain the Notification access requirement and debug-to-release reinstall
    caveat in the release notes, then choose **Publish release**.
 
@@ -143,6 +144,32 @@ Unit tests cover seek arithmetic, the 30-second amount, playback speed,
 paused playback, unknown timestamps/duration, and start/end clamping.
 On-device checks: saved duration, long press during playing/paused media,
 near-zero seeking, locked-screen behavior, and revoking Notification access.
+
+### F-Droid
+
+Version 2.0.1 adds store metadata for submission to the official F-Droid
+repository; rewind behavior and permissions are unchanged. Inclusion is subject
+to F-Droid review and is not guaranteed by submitting a merge request.
+
+The proposed build recipe is [docs/fdroid/org.headsetrewind.yml](docs/fdroid/org.headsetrewind.yml).
+Submit it as `metadata/org.headsetrewind.yml` in
+[fdroiddata](https://gitlab.com/fdroid/fdroiddata). It builds the unsigned release
+from the public `v2.0.1` source tag and enables updates from future version tags.
+Push the release commit and tag before requesting review; do not move existing
+release tags. A GitHub APK is not needed for F-Droid to build from source.
+
+Store descriptions, artwork, screenshots, and version-code changelogs live in
+[fastlane/metadata/android/en-US](fastlane/metadata/android/en-US).
+F-Droid reads these from the source revision being built, so include metadata
+updates in each release tag. No Fastlane installation is required. For future
+releases, increment `versionCode`, update `versionName`, add a changelog named
+after the new version code, and tag the release commit.
+
+F-Droid signs its builds with its own key. Switching between GitHub-signed and
+F-Droid-signed installations requires uninstalling the existing app first,
+which resets settings, Notification access, and the chosen voice-command
+handler. Updates within the same distribution channel retain signing
+compatibility. Never provide private signing keys to F-Droid.
 
 ## License
 
