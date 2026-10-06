@@ -1,3 +1,2 @@
-Long-press voice-command handling with a default 30-second rewind, adjustable from 1 to 120 seconds.
-Removed Accessibility access, multi-click detection, and diagnostics.
-Notification access is required to control active media sessions.
+Long press to rewind 30 seconds; adjustable from 1 to 120 seconds.
+Requires Notification access, not Accessibility access.
